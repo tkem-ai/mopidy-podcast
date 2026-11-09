@@ -80,3 +80,11 @@ def test_refresh(library, filename, abspath):
     assert library.backend.feeds
     library.refresh()
     assert not library.backend.feeds
+
+
+@pytest.mark.parametrize(
+    "uri", ["file:///feed.xml", "foo+file:///feed.xml", "podcast+"]
+)
+def test_feed_cache_invalid_uri(library, uri):
+    with pytest.raises(KeyError):
+        library.backend.feeds[uri]
