@@ -25,7 +25,8 @@ class PodcastFeedCache(cachetools.TTLCache):
 
     def __missing__(self, uri):
         ext_name, _, feedurl = uri.partition("+")
-        assert ext_name == Extension.ext_name
+        if ext_name != Extension.ext_name or not feedurl:
+            raise KeyError(uri)
         f = self.__opener.open(feedurl, timeout=self.__timeout)
         with contextlib.closing(f) as source:
             feed = feeds.parse(source)

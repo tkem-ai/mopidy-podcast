@@ -23,7 +23,7 @@ def parse(source):
     elif root.tag == "opml":
         return OpmlFeed(url, root)
     else:
-        raise TypeError("Not a recognized podcast feed: %s", url)
+        raise TypeError(f"Not a recognized podcast feed: {url}")
 
 
 def get_url(source, default=None):
@@ -76,6 +76,8 @@ class RssFeed(PodcastFeed):
     def __init__(self, url, root):
         super().__init__(url)
         self.__channel = channel = root.find("channel")
+        if channel is None:
+            raise ValueError(f"Invalid RSS feed {url}: missing <channel> element")
         items = channel.findall("./item/enclosure[@url]/..")
         self.__items = sorted(items, key=self.__order)
 
