@@ -3,8 +3,9 @@
 **Date:** 2026-11-10
 **Reviewed:** `develop`, i.e. `master` at `95cd796` ("Bump codecov/codecov-action from
 7.0.0 to 7.1.1", v4.0.0 plus dependency bumps) plus the build environment update, the
-`lookup()`, feed error and test fixture fixes and this review commit; `__version__`
-4.0.0.
+`lookup()`, feed error and test fixture fixes, "Exclude AGENTS.md from source
+distributions.", "Add system site packages setting as comment to tox.ini." and this
+review commit; `__version__` 4.0.0.
 
 **CI status:** All default `tox` environments pass locally on CPython 3.13.18 (`py`:
 36 passed) with Mopidy 4.0.5, cachetools 8.0.0, uritools 7.0.0 and Pykka 4.5.0; not
